@@ -6,6 +6,8 @@ In the project directory, you can run:
 
 ### `npm install` or `yarn`
 
+To install dependencies
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
@@ -17,7 +19,6 @@ You will also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
 
 ### `npm run build`
 
