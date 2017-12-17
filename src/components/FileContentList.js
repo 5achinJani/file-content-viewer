@@ -1,8 +1,19 @@
 import React from "react";
 
-export const FileContentList = ({ content, page }) => {
+import { Table } from "reactstrap";
+import FontAwesome from "react-fontawesome";
+
+export const FileContentList = ({ content, page, isLoading }) => {
+  if (isLoading) {
+    return (
+      <React.Fragment>
+        Loading content..
+        <FontAwesome name="spinner" spin={true} />
+      </React.Fragment>
+    );
+  }
   if (!content) {
-    return <span>No content to display.</span>;
+    return <React.Fragment>No content to display.</React.Fragment>;
   }
 
   const getLineNumber = index => {
@@ -16,8 +27,14 @@ export const FileContentList = ({ content, page }) => {
   };
 
   return (
-    <span>
-      <table align="center">
+    <React.Fragment>
+      <Table responsive={true}>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           {content.map((value, index) => {
             return (
@@ -28,7 +45,7 @@ export const FileContentList = ({ content, page }) => {
             );
           })}
         </tbody>
-      </table>
-    </span>
+      </Table>
+    </React.Fragment>
   );
 };

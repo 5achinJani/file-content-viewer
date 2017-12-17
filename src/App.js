@@ -3,9 +3,12 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+import { Container, Row, Col } from "reactstrap";
+
 import { fileBrowserApi } from "./services/fileBrowserApi";
 import { FileContentList } from "./components/FileContentList";
 import { FileContentPagination } from "./components/FileContentPagination";
+import { FileSearchBar } from "./components/FileSearchBar";
 
 class App extends Component {
   state = {
@@ -14,7 +17,8 @@ class App extends Component {
       page: 1,
       totalPage: 0,
       content: null,
-      error: null
+      error: null,
+      isLoading: false
     }
   };
   handleChange = event => {
@@ -57,6 +61,19 @@ class App extends Component {
     });
   }
 
+  setLoading(isLoading) {
+    return new Promise(resolve => {
+      this.setState(prevState => {
+        return {
+          file: {
+            ...prevState.file,
+            isLoading
+          }
+        };
+      }, resolve);
+    });
+  }
+
   onPaginate = page => {
     this.setPage(page).then(() => {
       this.getFileData();
@@ -67,12 +84,20 @@ class App extends Component {
     const { fileName, page } = this.state.file;
     const params = { fileName, page };
     try {
+      this.setLoading(true);
       const response = await fileBrowserApi(params);
       let { content, totalPage, page } = response;
       page = parseInt(page, 10); // cause api response has type string
       this.setState(prevState => {
         return {
-          file: { ...prevState.file, page, totalPage, content, error: null }
+          file: {
+            ...prevState.file,
+            page,
+            totalPage,
+            content,
+            error: null,
+            isLoading: false
+          }
         };
       });
     } catch (response) {
@@ -85,14 +110,14 @@ class App extends Component {
             page: 1,
             totalPage: 0,
             content: null,
-            error: message
+            error: message,
+            isLoading: false
           }
         };
       });
     }
   }
   render() {
-    const { error } = this.state.file;
     return (
       <div className="App">
         <header className="App-header">
@@ -100,39 +125,28 @@ class App extends Component {
           <h1 className="App-title">File content viewer</h1>
         </header>
         <p className="App-intro" />
-        <span>
-          <form onSubmit={this.handleSubmit}>
-            <p>
-              <label htmlFor="filename">
-                Enter file name to browse its content:
-              </label>
-            </p>
-
-            <input
-              name="filename"
-              type="text"
-              placeholder="file name"
-              autoComplete="on"
-              value={this.state.file.fileName}
-              onChange={this.handleChange}
-            />
-            <input type="submit" value="View" />
-            <p />
-            <span style={{ color: "darkred" }}> {error ? error : ""}</span>
-          </form>
-
-          <p />
-          <div>
-            <FileContentList {...this.state.file} />
-          </div>
-          <p> </p>
-          <div>
-            <FileContentPagination
-              {...this.state.file}
-              onPaginate={this.onPaginate}
-            />
-          </div>
-        </span>
+        <Container>
+          <Row>
+            <Col>
+              <FileSearchBar
+                file={this.state.file}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={{ size: 12 }}>
+              <FileContentList {...this.state.file} />
+            </Col>
+            <Col xs={{ size: 12 }}>
+              <FileContentPagination
+                {...this.state.file}
+                onPaginate={this.onPaginate}
+              />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

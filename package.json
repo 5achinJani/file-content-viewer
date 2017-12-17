@@ -2,12 +2,17 @@
   "name": "file-content-viewer",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8081",
   "devDependencies": {
     "react-scripts": "1.0.17"
   },
   "dependencies": {
+    "bootstrap": "4.0.0-beta.2",
+    "font-awesome": "^4.7.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-fontawesome": "^1.6.1",
+    "reactstrap": "^5.0.0-alpha.4"
   },
   "scripts": {
     "start": "react-scripts start",
