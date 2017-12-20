@@ -21,6 +21,7 @@ export const FileContentPagination = ({ page, totalPage, onPaginate }) => {
         <PaginationItem
           disabled={page === 1}
           title="Go to beginner of file"
+          name="js-item-start"
           onClick={() => {
             onPaginate(1);
           }}
@@ -29,9 +30,11 @@ export const FileContentPagination = ({ page, totalPage, onPaginate }) => {
             <FontAwesome name="angle-double-left" />
           </PaginationLink>
         </PaginationItem>
+
         <PaginationItem
           disabled={page - 1 < 1}
           title="Previous 10 lines"
+          name="js-item-back"
           onClick={() => {
             prevNext(page - 1);
           }}
@@ -44,6 +47,7 @@ export const FileContentPagination = ({ page, totalPage, onPaginate }) => {
         <PaginationItem
           disabled={page + 1 > totalPage}
           title="Next 10 lines"
+          name="js-item-next"
           onClick={() => {
             prevNext(page + 1);
           }}
@@ -56,6 +60,7 @@ export const FileContentPagination = ({ page, totalPage, onPaginate }) => {
         <PaginationItem
           disabled={page === totalPage}
           title="Go to end of file"
+          name="js-item-end"
           onClick={() => {
             onPaginate(totalPage);
           }}

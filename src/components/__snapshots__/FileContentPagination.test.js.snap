@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should not render pagination 1`] = `null`;
+
+exports[`should render pagination 1`] = `
+<ul
+  className="justify-content-center pagination"
+>
+  <li
+    className="page-item"
+    name="js-item-start"
+    onClick={[Function]}
+    title="Go to beginner of file"
+  >
+    <a
+      aria-label={undefined}
+      className="page-link"
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-angle-double-left"
+      />
+    </a>
+  </li>
+  <li
+    className="page-item"
+    name="js-item-back"
+    onClick={[Function]}
+    title="Previous 10 lines"
+  >
+    <a
+      aria-label={undefined}
+      className="page-link"
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-angle-left"
+      />
+    </a>
+  </li>
+  <li
+    className="page-item"
+    name="js-item-next"
+    onClick={[Function]}
+    title="Next 10 lines"
+  >
+    <a
+      aria-label={undefined}
+      className="page-link"
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-angle-right"
+      />
+    </a>
+  </li>
+  <li
+    className="page-item"
+    name="js-item-end"
+    onClick={[Function]}
+    title="Go to end of file"
+  >
+    <a
+      aria-label={undefined}
+      className="page-link"
+    >
+      <span
+        aria-hidden={true}
+        className="fa fa-angle-double-right"
+      />
+    </a>
+  </li>
+</ul>
+`;
