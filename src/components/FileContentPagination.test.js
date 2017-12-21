@@ -28,15 +28,17 @@ it("should paginate: next & end", () => {
   };
   const component = shallow(<FileContentPagination {...props} />);
   const nextBtn = component.find('[name="js-item-next"]');
-  const exec = (btn) => {
+  const endBtn = component.find('[name="js-item-end"]');
+  const exec = btn => {
     expect(btn.props().disabled).toBeFalsy();
     btn.simulate("click");
     expect(props.onPaginate).toHaveBeenCalled();
-  }
+  };
   exec(nextBtn);
+  exec(endBtn);
 });
 
-it("should not paginate: next", () => {
+it("should not paginate: next & end", () => {
   const props = {
     page: 1,
     totalPage: 1,
@@ -44,21 +46,48 @@ it("should not paginate: next", () => {
   };
   const component = shallow(<FileContentPagination {...props} />);
   const nextBtn = component.find('[name="js-item-next"]');
-  expect(nextBtn.props().disabled).toBeTruthy();
-  nextBtn.simulate("click");
-  expect(props.onPaginate).not.toHaveBeenCalled();
+  const endBtn = component.find('[name="js-item-end"]');
+  const exec = btn => {
+    expect(btn.props().disabled).toBeTruthy();
+    btn.simulate("click");
+    expect(props.onPaginate).not.toHaveBeenCalled();
+  };
+  exec(nextBtn);
+  exec(endBtn);
 });
 
-it("should paginate: back", () => {
+it("should paginate: back & start", () => {
   const props = {
-    page: 2,
+    page: 3,
     totalPage: 3,
     onPaginate: jest.fn()
   };
   const component = shallow(<FileContentPagination {...props} />);
   const backBtn = component.find('[name="js-item-back"]');
-  expect(backBtn.props().disabled).toBeFalsy();
-  backBtn.simulate("click");
-  expect(props.onPaginate).toHaveBeenCalled();
+  const startBtn = component.find('[name="js-item-start"]');
+  const exec = btn => {
+    expect(btn.props().disabled).toBeFalsy();
+    btn.simulate("click");
+    expect(props.onPaginate).toHaveBeenCalled();
+  };
+  exec(backBtn);
+  exec(startBtn);
 });
 
+it("should not paginate: back & start", () => {
+  const props = {
+    page: 1,
+    totalPage: 1,
+    onPaginate: jest.fn()
+  };
+  const component = shallow(<FileContentPagination {...props} />);
+  const backBtn = component.find('[name="js-item-back"]');
+  const startBtn = component.find('[name="js-item-start"]');
+  const exec = btn => {
+    expect(btn.props().disabled).toBeTruthy();
+    btn.simulate("click");
+    expect(props.onPaginate).not.toHaveBeenCalled();
+  };
+  exec(backBtn);
+  exec(startBtn);
+});

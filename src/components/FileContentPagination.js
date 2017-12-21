@@ -23,7 +23,7 @@ export const FileContentPagination = ({ page, totalPage, onPaginate }) => {
           title="Go to beginner of file"
           name="js-item-start"
           onClick={() => {
-            onPaginate(1);
+            prevNext(1);
           }}
         >
           <PaginationLink>
@@ -62,7 +62,7 @@ export const FileContentPagination = ({ page, totalPage, onPaginate }) => {
           title="Go to end of file"
           name="js-item-end"
           onClick={() => {
-            onPaginate(totalPage);
+            prevNext(totalPage);
           }}
         >
           <PaginationLink>
