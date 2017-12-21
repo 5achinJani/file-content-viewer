@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render 1`] = `
+<form
+  className=""
+  name="searchForm"
+  onSubmit={[Function]}
+>
+  <div
+    className="form-group"
+  >
+    <label
+      className=" form-control-label"
+      htmlFor="filename"
+    >
+      Enter file name to browse its content:
+    </label>
+    <input
+      className="form-control"
+      id="filename"
+      name="filename"
+      onChange={[Function]}
+      placeholder="file name"
+      required={true}
+      type="text"
+      value="test"
+    />
+    <div
+      className="invalid-feedback"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <button
+      className="btn btn-secondary"
+      disabled={false}
+      name="js-btn-submit"
+      onClick={[Function]}
+      type="submit"
+    >
+      View 
+    </button>
+  </div>
+</form>
+`;

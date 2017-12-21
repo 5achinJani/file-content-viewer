@@ -18,10 +18,11 @@ export const FileSearchBar = ({ file, handleSubmit, handleChange }) => {
   }
   return (
     <React.Fragment>
-      <Form onSubmit={handleSubmit}>
+      <Form name="searchForm" onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="filename">Enter file name to browse its content:</Label>
           <Input
+            required={true}
             type="text"
             name="filename"
             id="filename"
@@ -33,7 +34,7 @@ export const FileSearchBar = ({ file, handleSubmit, handleChange }) => {
           <FormFeedback>{error ? error : ""}</FormFeedback>
         </FormGroup>
         <FormGroup>
-          <Button type="submit" disabled={isLoading}>
+          <Button name="js-btn-submit" type="submit" disabled={isLoading}>
             View {isLoading ? <FontAwesome name="spinner" spin={true} /> : null}
           </Button>
         </FormGroup>
