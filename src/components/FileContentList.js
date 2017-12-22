@@ -5,25 +5,14 @@ import FontAwesome from "react-fontawesome";
 
 export const FileContentList = ({ content, page, isLoading }) => {
   if (isLoading) {
-    return (
-      <React.Fragment>
-        Loading content..
-        <FontAwesome name="spinner" spin={true} />
-      </React.Fragment>
-    );
+    return <ContentLoader />;
   }
-  if (!content) {
-    return <React.Fragment>No content to display.</React.Fragment>;
+  if (!content || !content.length) {
+    return <ContentNotAvail />;
   }
 
   const getLineNumber = index => {
-    const prefix = page - 1;
-    const suffix = index + 1;
-    let result = `${prefix}${suffix}`;
-    if (suffix === 10) {
-      result = `${page}0`;
-    }
-    return result;
+    return generateLineNo({ page, index });
   };
 
   return (
@@ -32,10 +21,10 @@ export const FileContentList = ({ content, page, isLoading }) => {
         <thead>
           <tr>
             <th>#</th>
-            <th></th>
+            <th />
           </tr>
         </thead>
-        <tbody>
+        <tbody name="js-content-list">
           {content.map((value, index) => {
             return (
               <tr key={index}>
@@ -48,4 +37,27 @@ export const FileContentList = ({ content, page, isLoading }) => {
       </Table>
     </React.Fragment>
   );
+};
+
+export const ContentLoader = () => {
+  return (
+    <div>
+      Loading content..
+      <FontAwesome name="spinner" spin={true} />
+    </div>
+  );
+};
+
+export const ContentNotAvail = () => {
+  return <div>No content to display</div>;
+};
+
+export const generateLineNo = ({ page, index }) => {
+  const prefix = page - 1;
+  const suffix = index + 1;
+  let result = `${prefix}${suffix}`;
+  if (suffix === 10) {
+    result = `${page}0`;
+  }
+  return result;
 };
