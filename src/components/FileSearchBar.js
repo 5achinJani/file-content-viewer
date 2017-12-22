@@ -31,7 +31,7 @@ export const FileSearchBar = ({ file, handleSubmit, handleChange }) => {
             onChange={handleChange}
             valid={valid}
           />
-          <FormFeedback>{error ? error : ""}</FormFeedback>
+          <FormFeedback name="js-error-text">{error ? error : ""}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Button name="js-btn-submit" type="submit" disabled={isLoading}>
