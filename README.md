@@ -1,3 +1,8 @@
+# File-Content-Viewer
+
+[![Build Status](https://travis-ci.org/5achinJani/file-content-viewer.svg?branch=master)](https://travis-ci.org/5achinJani/file-content-viewer)
+[![Coverage Status](https://coveralls.io/repos/github/5achinJani/file-content-viewer/badge.svg?branch=master)](https://coveralls.io/github/5achinJani/file-content-viewer?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## Available Scripts
