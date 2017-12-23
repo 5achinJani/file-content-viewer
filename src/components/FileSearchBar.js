@@ -23,6 +23,7 @@ export const FileSearchBar = ({ file, handleSubmit, handleChange }) => {
           <Label for="filename">Enter file name to browse its content:</Label>
           <Input
             required={true}
+            disabled={isLoading}
             type="text"
             name="filename"
             id="filename"

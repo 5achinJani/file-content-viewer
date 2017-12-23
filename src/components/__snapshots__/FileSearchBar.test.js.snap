@@ -17,6 +17,7 @@ exports[`should render 1`] = `
     </label>
     <input
       className="form-control"
+      disabled={false}
       id="filename"
       name="filename"
       onChange={[Function]}
